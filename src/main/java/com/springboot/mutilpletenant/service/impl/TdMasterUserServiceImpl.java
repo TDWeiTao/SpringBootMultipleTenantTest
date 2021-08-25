@@ -34,8 +34,6 @@ public class TdMasterUserServiceImpl extends ServiceImpl<TdMasterUserMapper, TdM
 
     @Override
     public boolean insertUsers(TdMasterUser user) {
-
-
         return tdMasterUserMapper.insert(user) > 0;
     }
 }
