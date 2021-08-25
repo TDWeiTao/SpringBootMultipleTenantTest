@@ -2,6 +2,7 @@ package com.springboot.mutilpletenant.service.impl;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.springboot.mutilpletenant.entity.TdMasterUser;
 import com.springboot.mutilpletenant.mapper.TdMasterUserMapper;
 import com.springboot.mutilpletenant.service.TdMasterUserService;
@@ -33,6 +34,8 @@ public class TdMasterUserServiceImpl extends ServiceImpl<TdMasterUserMapper, TdM
 
     @Override
     public boolean insertUsers(TdMasterUser user) {
+
+
         return tdMasterUserMapper.insert(user) > 0;
     }
 }
