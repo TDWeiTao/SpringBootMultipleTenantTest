@@ -43,7 +43,7 @@ public class CodeGenerator {
 //        gc.setAuthor("taowei");//作者名
         gc.setSwagger2(true); //实体属性 Swagger2 注解
 //        gc.setOutputDir(filePath + "java");//代码生成路径
-        gc.setFileOverride(true);// 是否覆盖同名文件，默认是false
+        gc.setFileOverride(false);// 是否覆盖同名文件，默认是false
         gc.setActiveRecord(true);// 不需要ActiveRecord特性的请改为false
         gc.setEnableCache(false);// XML 二级缓存
         gc.setBaseResultMap(true);// XML ResultMap
