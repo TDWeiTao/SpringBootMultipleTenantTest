@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    dynamic:
+      primary: master
+      datasource:
+        master:
+          type: com.alibaba.druid.pool.DruidDataSource
+          url: jdbc:postgresql://114.115.160.150:5432/td_test
+          username: postgres
+          password: tdpassword
+          drive-class-name: org.postgresql.Drive
+        slave_1:
+          type: com.alibaba.druid.pool.DruidDataSource
+          url: jdbc:postgresql://114.115.160.150:5432/td_test_slave01
+          username: postgres
+          password: tdpassword
+          drive-class-name: org.postgresql.Drive
+#          type: com.alibaba.druid.pool.DruidDataSource
+#          driver-class-name: com.mysql.jdbc.Driver
+#          url: jdbc:MySQL://39.101.195.14:3306/datasource_master?useUnicode=true&autoReconnect=true&failOverReadOnly=false&rewriteBatchedStatements=true&useSSL=false
+#          username: root
+#          password: taowei1230
+#        slave_1:
+#          type: com.alibaba.druid.pool.DruidDataSource
+#          driver-class-name: com.mysql.jdbc.Driver
+#          url: jdbc:MySQL://39.101.195.14:3306/datasource_slave_1?useUnicode=true&autoReconnect=true&failOverReadOnly=false&rewriteBatchedStatements=true&useSSL=false
+#          username: root
+#          password: taowei1230
+#        slave_2:
+#          type: com.alibaba.druid.pool.DruidDataSource
+#          driver-class-name: com.mysql.jdbc.Driver
+#          url: jdbc:MySQL://39.101.195.14:3306/datasource_slave_2?useUnicode=true&autoReconnect=true&failOverReadOnly=false&rewriteBatchedStatements=true&useSSL=false
+#          username: root
+#          password: taowei1230
