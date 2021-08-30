@@ -74,6 +74,8 @@ public class TdMasterUserController {
     @ResponseBody
     private R users(@RequestBody TdMasterUser user) {
         user.setCreateTime(new Date());
+        String tenantId = BaseContextHandler.getTenantId();
+        user.setTenantId(Long.parseLong(tenantId));
         if(tdMasterUserService.insertUsers(user)){
             return R.ok("用户新增成功！");
         }
