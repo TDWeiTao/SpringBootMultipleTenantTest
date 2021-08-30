@@ -10,15 +10,33 @@ public class FileReporter {
 
     public static void main(String[] args) {
 
+        try {
+            long start = System.currentTimeMillis();
+            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(new File(filePath)));
+            BufferedReader in = new BufferedReader(new InputStreamReader(bis, "utf-8"), 10 * 1024 * 1024);//10M缓存
+            // 按行获取
+            while (in.ready()) {
+                String line = in.readLine();
+//                System.out.println(line);
+            }
+            in.close();
+            long end = System.currentTimeMillis();
+            System.out.println("字符流：读取文件容花费：" + (end - start) + "毫秒");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+
         File file = new File(filePath);
-        // 缓冲区大小 300M
-        final int BUFFER_SIZE = 0x30000000;
+        // 缓冲区大小 3M
+        final int BUFFER_SIZE = 0x300000;
         try {
             MappedByteBuffer inputBuffer = new RandomAccessFile(file, "r")
                     .getChannel().map(FileChannel.MapMode.READ_ONLY, 0, file.length());
-            // 每次读出300M的内容
+            // 每次读出3M的内容
             byte[] dst = new byte[BUFFER_SIZE];
             long start = System.currentTimeMillis();
+            // 按照缓冲区大小获取
             for (int offset = 0; offset < inputBuffer.capacity(); offset += BUFFER_SIZE) {
                 if (inputBuffer.capacity() - offset >= BUFFER_SIZE) {
                     for (int i = 0; i < BUFFER_SIZE; i++) {
@@ -33,7 +51,7 @@ public class FileReporter {
 //                System.out.println(new String(dst, 0, length));
             }
             long end = System.currentTimeMillis();
-            System.out.println("读取文件文件一半内容花费：" + (end - start) + "毫秒");
+            System.out.println("文件通道：读取文件花费：" + (end - start) + "毫秒");
         } catch (IOException e) {
             e.printStackTrace();
         }
